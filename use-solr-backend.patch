@@ -1,0 +1,60 @@
+diff --git a/src/Tests/ExampleContentTrait.php b/src/Tests/ExampleContentTrait.php
+index 2a3143f..5343feb 100644
+--- a/src/Tests/ExampleContentTrait.php
++++ b/src/Tests/ExampleContentTrait.php
+@@ -90,7 +90,9 @@ trait ExampleContentTrait {
+   protected function indexItems($index_id) {
+     /** @var \Drupal\search_api\IndexInterface $index */
+     $index = Index::load($index_id);
+-    return $index->indexItems();
++    $num = $index->indexItems();
++    sleep(2);
++    return $num;
+   }
+ 
+ }
+diff --git a/src/Tests/WebTestBase.php b/src/Tests/WebTestBase.php
+index bb017ca..abfcd0e 100644
+--- a/src/Tests/WebTestBase.php
++++ b/src/Tests/WebTestBase.php
+@@ -26,6 +26,8 @@ abstract class WebTestBase extends SimpletestWebTestBase {
+     'views',
+     'node',
+     'search_api',
++    'search_api_solr',
++    'search_api_solr_test',
+     'facets',
+     'block',
+     'facets_search_api_dependency',
+@@ -58,7 +60,7 @@ abstract class WebTestBase extends SimpletestWebTestBase {
+    *
+    * @var string
+    */
+-  protected $indexId = 'database_search_index';
++  protected $indexId = 'solr_search_index';
+ 
+   /**
+    * {@inheritdoc}
+diff --git a/tests/facets_search_api_dependency/config/install/views.view.search_api_test_views_fulltext.yml b/tests/facets_search_api_dependency/config/install/views.view.search_api_test_views_fulltext.yml
+index d13feac..3296762 100644
+--- a/tests/facets_search_api_dependency/config/install/views.view.search_api_test_views_fulltext.yml
++++ b/tests/facets_search_api_dependency/config/install/views.view.search_api_test_views_fulltext.yml
+@@ -1,5 +1,5 @@
+ base_field: search_api_id
+-base_table: search_api_index_database_search_index
++base_table: search_api_index_solr_search_index
+ core: 8.x
+ description: ''
+ status: true
+diff --git a/tests/facets_search_api_dependency/facets_search_api_dependency.info.yml b/tests/facets_search_api_dependency/facets_search_api_dependency.info.yml
+index 69ceeeb..b8c2a03 100644
+--- a/tests/facets_search_api_dependency/facets_search_api_dependency.info.yml
++++ b/tests/facets_search_api_dependency/facets_search_api_dependency.info.yml
+@@ -6,5 +6,6 @@ core: 8.x
+ hidden: true
+ dependencies:
+   - search_api:search_api
+-  - search_api:search_api_test_db
+   - drupal:views
++  - search_api_solr:search_api_solr
++  - search_api_solr:search_api_solr_test
