@@ -105,7 +105,7 @@ script:
   # failed.
   # Re-enable when trying to get CodeSniffer doesn't return a 403 anymore.
   #- /home/travis/.composer/vendor/bin/phpcs --standard=/home/travis/.composer/vendor/drupal/coder/coder_sniffer/Drupal --extensions=php,inc,test,module,install --ignore=css/ $TRAVIS_BUILD_DIR/../drupal/modules/search_api_multilingual
-  - mv use-solr-backend.patch modules/facets/use-solr-backend.patch; cd modules/facets/; git apply -v use-solr-backend.patch;
+  - mv use-solr-backend.patch modules/facets/use-solr-backend.patch; cd modules/facets/; git apply -v use-solr-backend.patch; cd -;
   - php core/scripts/run-tests.sh --verbose --color --non-html --concurrency 8 --php `which php` --url http://localhost:8888 --directory modules/facets --types Simpletest | tee /tmp/test.txt | grep passes; export TEST_FOS_EXIT=${PIPESTATUS[0]} ; echo $TEST_FOS_EXIT
   - TEST_FOS_OUTPUT=$(! egrep -i "([0-9]+ fails)|(Fatal erro)|([0-9]+ exceptions)" /tmp/test.txt > /dev/null)$?
   - php -i | grep 'php.ini'
