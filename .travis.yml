@@ -98,5 +98,5 @@ script:
   - cd $TRAVIS_BUILD_DIR/../drupal
   - export SIMPLETEST_DB=mysql://root:@localhost/drupal
   - export SIMPLETEST_BASE_URL=http://localhost:8888
-  - ./vendor/bin/phpunit -c core --group search_api,facets,search_api_solr,search_api_solr_multilingual --verbose | tee ; export TEST_PHPUNIT=${PIPESTATUS[0]} ; echo $TEST_PHPUNIT
+  - ./vendor/bin/phpunit -c core --group facets --verbose | tee ; export TEST_PHPUNIT=${PIPESTATUS[0]} ; echo $TEST_PHPUNIT
   - if [ $TEST_PHPUNIT -eq 0 ]; then exit 0; else exit 1; fi
