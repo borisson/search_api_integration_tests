@@ -55,12 +55,13 @@ install:
   - git clone --depth=1 --branch $DRUPAL_CORE_BRANCH https://git.drupal.org/project/drupal.git
   - cd $TRAVIS_BUILD_DIR/../drupal
   - composer install
-  - composer config repositories.drupal composer https://packages.drupal.org/8
   - composer require drupal/search_api:1.x-dev
   - composer require drupal/search_api_autocomplete:1.x-dev
   - composer require drupal/search_api_solr:1.x-dev
   - composer require drupal/search_api_solr_multilingual:1.x-dev
+  - composer require drupal/search_api_location:1.x-dev
   - composer require drupal/facets:1.x-dev
+  - composer require drupal/geofield:1.x-dev
   - composer require drush/drush
   # Patch template.
   #########################################
