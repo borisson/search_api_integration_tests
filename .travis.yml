@@ -35,7 +35,6 @@ mysql:
 # than e.g. phantomjs
 before_install:
   - phpenv config-rm xdebug.ini
-  - composer self-update
   - composer global require "hirak/prestissimo:^0.3"
   - sudo apt-get update -qq > /dev/null
   - "export DISPLAY=:99.0"
