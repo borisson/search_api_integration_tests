@@ -55,6 +55,7 @@ install:
   - cd $TRAVIS_BUILD_DIR/../drupal
   - composer install
   - composer require drush/drush drupal/search_api:1.x-dev drupal/search_api_autocomplete:1.x-dev drupal/search_api_solr:1.x-dev drupal/search_api_solr_multilingual:1.x-dev drupal/search_api_location:1.x-dev drupal/facets:1.x-dev drupal/geofield:1.x-dev
+  - curl https://www.drupal.org/files/issues/functional_test_perfomance-2900208-5.patch | patch -p1
   # Patch template.
   #########################################
   # to be removed once #2824932 is resolved
